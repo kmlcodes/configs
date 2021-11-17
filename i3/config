@@ -42,11 +42,13 @@ set $ws10 "10"
 #====================
 # Autostart commands
 #====================
+# set random wallpapers
+feh --bg-fill --randomize ~/.local/share/wallpapers/*
 
-# run autorandr 
+# restore monitor configuration
 exec autorandr --change
 
-# run pulseaudio
+# start pulseaudio server
 exec pulseaudio
 
 # Start XDG autostart .desktop files using dex.
@@ -63,7 +65,7 @@ exec --no-startup-id nm-applet
 # Keybindings
 #====================
 
-# start a terminal
+# auto selected terminal
 bindsym $mod+Return exec i3-sensible-terminal
 
 # kill focused window
@@ -181,12 +183,12 @@ mode "resize" {
         bindsym $mod+r mode "default"
 }
 
-# bindings for common programs
+# custom shortcuts to frequently used programs
 bindsym Mod1+Shift+E exec nemo
 bindsym Mod1+Shift+B exec firefox
 bindsym Mod1+Shift+D exec evince
 
-# bindings for volume keys 
+# enable volume keys 
 bindsym XF86AudioRaiseVolume exec "amixer -q sset Master,0 1+ unmute"
 bindsym XF86AudioLowerVolume exec "amixer -q sset Master,0 1- unmute"
 bindsym XF86AudioMute exec "amixer -q sset Master,0 toggle"
