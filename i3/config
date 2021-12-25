@@ -10,7 +10,7 @@
 #==================
 
 # font for window titles. ISO 10646 = Unicode
-font pango: 3270Medium Nerd Font, 10
+font pango: FiraCode Nerd Font  10
 
 # colors
 # from: https://gist.github.com/paulbdavis/4956329
@@ -27,8 +27,13 @@ set $mod Mod4
 floating_modifier $mod
 
 # Define names for default workspaces for which we configure key bindings later on.
-# We use variables to avoid repeating the names in multiple places.
-set $ws1 "1"
+# set $ws1 "1:  " 
+# set $ws2 "2:  "
+# set $ws3 "3:  "
+# set $ws4 "4:  "
+# set $ws5 "5:  "
+
+set $ws1 "1" 
 set $ws2 "2"
 set $ws3 "3"
 set $ws4 "4"
@@ -39,17 +44,27 @@ set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10"
 
-#====================
+# assign programs to particular workspace
+#assign [class="Alacritty"] $ws1
+#assign [class="firefox"] $ws2
+#assign [class="Evince"] $ws3
+#assign [class="Nemo"] $ws4
+#for_window [class="Spotify"] move to workspace $ws5
+
+##====================
 # Autostart commands
 #====================
+
+# autostart needed apps
+# exec firefox
+# exec alacritty
+# turn off internal display
+exec xrandr --output LVDS-1 --off
 # set random wallpapers
-feh --bg-fill --randomize ~/.local/share/wallpapers/*
+exec feh --bg-fill --randomize ~/.local/share/wallpapers/*
 
-# restore monitor configuration
-exec autorandr --change
-
-# start pulseaudio server
-exec pulseaudio
+# picom
+exec_always --no-startup-id picom &
 
 # Start XDG autostart .desktop files using dex.
 exec --no-startup-id dex --autostart --environment i3
@@ -58,15 +73,12 @@ exec --no-startup-id dex --autostart --environment i3
 # screen before suspend. Use loginctl lock-session to lock your screen.
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 
-#nm-applet is a desktop environment-independent system tray GUI for it.
-exec --no-startup-id nm-applet
-
 #====================
 # Keybindings
 #====================
 
 # auto selected terminal
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec alacritty
 
 # kill focused window
 bindsym Mod1+F4 kill
@@ -187,16 +199,13 @@ mode "resize" {
 bindsym Mod1+Shift+E exec nemo
 bindsym Mod1+Shift+B exec firefox
 bindsym Mod1+Shift+D exec evince
+bindsym Mod1+Shift+S exec spotify
+bindsym Mod1+Shift+C exec code
 
-# enable volume keys 
-bindsym XF86AudioRaiseVolume exec "amixer -q sset Master,0 1+ unmute"
-bindsym XF86AudioLowerVolume exec "amixer -q sset Master,0 1- unmute"
-bindsym XF86AudioMute exec "amixer -q sset Master,0 toggle"
-
-# toggle internal display visibility
-bindsym Mod1+Shift+F exec xrandr --output LVDS-1 --off
-bindsym Mod1+Shift+T exec autorandr --change
-
+# Pulse Audio controls
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume 0 +5% 
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume 0 -5%
+bindsym XF86AudioMute exec pactl set-sink-mute 0 toggle 
 
 #========================
 # Status bar
