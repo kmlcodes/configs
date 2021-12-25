@@ -54,10 +54,7 @@ battery 0 {
 }
 
 disk "/" {
-      	format = "  / %avail "
-	prefix_type	= custom
-	low_threshold = 20
-	threshold_type = percentage_avail
+      	format = "  / %used "
 }
 
 cpu_usage {
