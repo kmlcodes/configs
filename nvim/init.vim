@@ -387,9 +387,9 @@ nnoremap <leader>q g<c-g>
 " Keymap for replacing up to next _ or -
 noremap <leader>m ct_
 
-" save file
+" Ctrl+s saves file
 noremap <c-s> :w<CR>
 
-" close file
+" Ctrl+w closes file
 map <c-w> :bw<CR>
 
