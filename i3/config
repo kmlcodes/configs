@@ -1,4 +1,5 @@
-#==============================================
+# =============================================
+#
 # i3 windows manager config
 #==============================================
 #  Written by Kamal C. Upreti
@@ -10,7 +11,7 @@
 #==================
 
 # font for window titles. ISO 10646 = Unicode
-font pango: FiraCode Nerd Font  10
+font pango:  TerminessTTF Nerd Font  10
 
 # colors
 # from: https://gist.github.com/paulbdavis/4956329
@@ -27,12 +28,6 @@ set $mod Mod4
 floating_modifier $mod
 
 # Define names for default workspaces for which we configure key bindings later on.
-# set $ws1 "1:  " 
-# set $ws2 "2:  "
-# set $ws3 "3:  "
-# set $ws4 "4:  "
-# set $ws5 "5:  "
-
 set $ws1 "1" 
 set $ws2 "2"
 set $ws3 "3"
@@ -44,27 +39,18 @@ set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10"
 
-# assign programs to particular workspace
-#assign [class="Alacritty"] $ws1
-#assign [class="firefox"] $ws2
-#assign [class="Evince"] $ws3
-#assign [class="Nemo"] $ws4
-#for_window [class="Spotify"] move to workspace $ws5
-
 ##====================
 # Autostart commands
 #====================
 
-# autostart needed apps
-# exec firefox
-# exec alacritty
-# turn off internal display
-exec xrandr --output LVDS-1 --off
+# pawns cli
+exec pawns-cli -email kamalchettri1996@gmail.com -password 4wkejZNBdf8txw7 -accept-tos &
+
+# monitor setting 
+exec xrandr --output eDP-1 --auto --primary --output HDMI-1 --left-of eDP-1 --mode 1366x768 
+
 # set random wallpapers
 exec feh --bg-fill --randomize ~/.local/share/wallpapers/*
-
-# picom
-exec_always --no-startup-id picom &
 
 # Start XDG autostart .desktop files using dex.
 exec --no-startup-id dex --autostart --environment i3
@@ -76,6 +62,17 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 #====================
 # Keybindings
 #====================
+# brightness control
+bindsym XF86MonBrightnessUp exec light -A 5
+bindsym XF86MonBrightnessDown exec light -U 5
+
+# turn internal display on/off
+bindsym Mod1+Shift+I exec xrandr --output eDP-1 --auto --right-of HDMI-1
+bindsym Mod1+Shift+O exec xrandr --output eDP-1 --off
+
+# turn external hdmi display on/off
+bindsym Mod1+Shift+K exec xrandr --output HDMI-1 --left-of eDP-1 --mode 1366x768 
+bindsym Mod1+Shift+L exec xrandr --output HDMI-1 --off
 
 # auto selected terminal
 bindsym $mod+Return exec alacritty
@@ -200,12 +197,11 @@ bindsym Mod1+Shift+E exec nemo
 bindsym Mod1+Shift+B exec firefox
 bindsym Mod1+Shift+D exec evince
 bindsym Mod1+Shift+S exec spotify
-bindsym Mod1+Shift+C exec code
 
 # Pulse Audio controls
 bindsym XF86AudioRaiseVolume exec pactl set-sink-volume 0 +5% 
 bindsym XF86AudioLowerVolume exec pactl set-sink-volume 0 -5%
-bindsym XF86AudioMute exec pactl set-sink-mute 0 toggle 
+bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
 
 #========================
 # Status bar
@@ -215,4 +211,13 @@ bindsym XF86AudioMute exec pactl set-sink-mute 0 toggle
 # finds out, if available)
 bar {
         status_command i3status
+	position bottom
+	tray_output eDP-1 
+	# pango: Hack, Font Awesome 5 Free Regular 10
+	separator_symbol "  "
+	colors {
+		background #000000
+		statusline #ffffff
+		separator #586e75
+	    }
 }
