@@ -1,4 +1,16 @@
+"=============================================
+" Neovim editor configuration
+"=============================================
+" Written by Kamal C. Upreti
+"  (github.com/m3kamal)
+" This configuration has been adapted 
+" mostly from here: https://github.com/jonhoo/configs
+"==============================================
+
+
+" use bash shell
 set shell=/bin/bash
+" set map leader to space key 
 let mapleader = "\<Space>"
 "=========================
 " Define Plugins
@@ -12,7 +24,9 @@ Plug 'https://github.com/vim-airline/vim-airline' " Status bar
 Plug 'https://github.com/ryanoasis/vim-devicons' " Developer Icons
 Plug 'https://github.com/tc50cal/vim-terminal' " Vim Terminal
 Plug 'https://github.com/terryma/vim-multiple-cursors' " CTRL + N for multiple cursors
-Plug 'chriskempson/base16-vim'
+Plug 'doums/darcula' "Darcula color scheme
+Plug 'gelguy/wilder.nvim' " wild menu
+Plug 'tmsvg/pear-tree' " auto brackets pairing
 
 " Fuzzy finder
 Plug 'airblade/vim-rooter'
@@ -71,16 +85,9 @@ if !has('gui_running')
 endif
 set termguicolors
 set background=dark
-let base16colorspace=256
-colorscheme base16-gruvbox-dark-hard
+colorscheme darcula
 syntax on
 hi Normal ctermbg=NONE
-
-" Customize the highlight a bit.
-" Make comments more prominent -- they are important.
-call Base16hi("Comment", g:base16_gui09, "", g:base16_cterm09, "", "", "")
-" Make it clearly visible which argument we're at.
-call Base16hi("LspSignatureActiveParameter", g:base16_gui05, g:base16_gui03, g:base16_cterm05, g:base16_cterm03, "bold", "")
 
 if executable('rg')
 	set grepprg=rg\ --no-heading\ --vimgrep
@@ -103,6 +110,15 @@ set completeopt=menuone,noinsert,noselect
 set cmdheight=2
 " You will have bad experience for diagnostic messages when it's default 4000.
 set updatetime=300
+
+" wilder setup
+call wilder#setup({
+      \ 'modes': [':'],
+      \ 'next_key': '<Right>',
+      \ 'previous_key': '<Left>',
+      \ 'accept_key': '<Down>',
+      \ 'reject_key': '<Up>',
+      \ })  
 
 " LSP configuration
 lua << END
@@ -271,7 +287,7 @@ nnoremap / /\v
 cnoremap %s/ %sm/
 
 " =============================================================================
-" # GUI settings
+" GUI settings
 " =============================================================================
 set guioptions-=T " Remove toolbar
 set vb t_vb= " No more beeps
@@ -298,34 +314,10 @@ set shortmess+=c " don't give |ins-completion-menu| messages.
 set listchars=nbsp:¬,extends:»,precedes:«,trail:•
 
 " =============================================================================
-" # Keyboard shortcuts
+"  Keyboard shortcuts
 " =============================================================================
 " ; as :
 nnoremap ; :
-
-" Ctrl+j and Ctrl+k as Esc
-" Ctrl-j is a little awkward unfortunately:
-" https://github.com/neovim/neovim/issues/5916
-" So we also map Ctrl+k
-nnoremap <C-j> <Esc>
-inoremap <C-j> <Esc>
-vnoremap <C-j> <Esc>
-snoremap <C-j> <Esc>
-xnoremap <C-j> <Esc>
-cnoremap <C-j> <C-c>
-onoremap <C-j> <Esc>
-lnoremap <C-j> <Esc>
-tnoremap <C-j> <Esc>
-
-nnoremap <C-k> <Esc>
-inoremap <C-k> <Esc>
-vnoremap <C-k> <Esc>
-snoremap <C-k> <Esc>
-xnoremap <C-k> <Esc>
-cnoremap <C-k> <C-c>
-onoremap <C-k> <Esc>
-lnoremap <C-k> <Esc>
-tnoremap <C-k> <Esc>
 
 " Ctrl+h to stop searching
 vnoremap <C-h> :nohlsearch<cr>
@@ -341,8 +333,6 @@ map H ^
 map L $
 
 " Neat X clipboard integration
-" ,p will paste clipboard into buffer
-" ,c will copy entire buffer into clipboard
 noremap <leader>p :read !xsel --clipboard --output<cr>
 noremap <leader>c :w !xsel -ib<cr><cr>
 
@@ -370,7 +360,6 @@ command! -bang -nargs=? -complete=dir Files
 nnoremap <leader>o :e <C-R>=expand("%:p:h") . "/" <CR>
 
 " No arrow keys --- force yourself to use the home row
-"
 nnoremap <up> <nop>
 nnoremap <down> <nop>
 inoremap <up> <nop>
@@ -397,3 +386,10 @@ nnoremap <leader>q g<c-g>
 
 " Keymap for replacing up to next _ or -
 noremap <leader>m ct_
+
+" save file
+noremap <c-s> :w<CR>
+
+" close file
+map <c-w> :bw<CR>
+
