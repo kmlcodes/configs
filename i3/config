@@ -47,10 +47,13 @@ set $ws10 "10"
 exec pawns-cli -email kamalchettri1996@gmail.com -password 4wkejZNBdf8txw7 -accept-tos &
 
 # monitor setting 
-exec xrandr --output eDP-1 --auto --primary --output HDMI-1 --left-of eDP-1 --mode 1366x768 
+exec_always xrandr --output eDP-1 --auto --primary --output HDMI-1 --mode 1366x768 --left-of eDP-1 --brightness 1.1
 
 # set random wallpapers
-exec feh --bg-fill --randomize ~/.local/share/wallpapers/*
+exec_always feh --bg-max --randomize ~/.local/share/wallpapers/*
+
+# night light
+exec --no-startup-id redshift-gtk
 
 # Start XDG autostart .desktop files using dex.
 exec --no-startup-id dex --autostart --environment i3
@@ -63,18 +66,14 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 # Keybindings
 #====================
 # brightness control
-bindsym XF86MonBrightnessUp exec light -A 5
+bindsym XF86MonBrightnessUp exec light -A 6
 bindsym XF86MonBrightnessDown exec light -U 5
 
-# turn internal display on/off
-bindsym Mod1+Shift+I exec xrandr --output eDP-1 --auto --right-of HDMI-1
-bindsym Mod1+Shift+O exec xrandr --output eDP-1 --off
-
-# turn external hdmi display on/off
-bindsym Mod1+Shift+K exec xrandr --output HDMI-1 --left-of eDP-1 --mode 1366x768 
+# turn hdmi display on/off
+bindsym Mod1+Shift+K exec xrandr --output eDP-1 --auto --primary --output HDMI-1 --mode 1366x768 --left-of eDP-1 --brightness 1.1
 bindsym Mod1+Shift+L exec xrandr --output HDMI-1 --off
 
-# auto selected terminal
+# start alacritty terminal
 bindsym $mod+Return exec alacritty
 
 # kill focused window
@@ -197,10 +196,11 @@ bindsym Mod1+Shift+E exec nemo
 bindsym Mod1+Shift+B exec firefox
 bindsym Mod1+Shift+D exec evince
 bindsym Mod1+Shift+S exec spotify
+bindsym Mod1+Shift+M exec rhythmbox
 
 # Pulse Audio controls
-bindsym XF86AudioRaiseVolume exec pactl set-sink-volume 0 +5% 
-bindsym XF86AudioLowerVolume exec pactl set-sink-volume 0 -5%
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume  @DEFAULT_SINK@ +5% 
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume  @DEFAULT_SINK@ -5%
 bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
 
 #========================
