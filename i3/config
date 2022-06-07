@@ -44,16 +44,16 @@ set $ws10 "10"
 #====================
 
 # pawns cli
-exec pawns-cli -email kamalchettri1996@gmail.com -password 4wkejZNBdf8txw7 -accept-tos &
+#exec pawns-cli -email kamalchettri1996@gmail.com -password 4wkejZNBdf8txw7 -accept-tos &
 
 # monitor setting 
-exec_always xrandr --output eDP-1 --auto --primary --output HDMI-1 --mode 1366x768 --left-of eDP-1 --brightness 1.1
+#exec_always xrandr --output eDP-1 --auto --primary --output HDMI-1 --mode 1366x768 --left-of eDP-1 --brightness 1.1
 
 # set random wallpapers
 exec_always feh --bg-max --randomize ~/.local/share/wallpapers/*
 
 # night light
-exec --no-startup-id redshift-gtk
+#exec --no-startup-id redshift-gtk
 
 # Start XDG autostart .desktop files using dex.
 exec --no-startup-id dex --autostart --environment i3
@@ -65,13 +65,18 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 #====================
 # Keybindings
 #====================
+
+# power off and reboot
+bindsym Control+Mod1+Delete exec --no-startup-id systemctl reboot, mode "default"
+bindsym $mod+End exec --no-startup-id systemctl poweroff -i, mode "default"  
+
 # brightness control
 bindsym XF86MonBrightnessUp exec light -A 6
 bindsym XF86MonBrightnessDown exec light -U 5
 
 # turn hdmi display on/off
-bindsym Mod1+Shift+K exec xrandr --output eDP-1 --auto --primary --output HDMI-1 --mode 1366x768 --left-of eDP-1 --brightness 1.1
-bindsym Mod1+Shift+L exec xrandr --output HDMI-1 --off
+#bindsym Mod1+Shift+K exec xrandr --output eDP-1 --auto --primary --output HDMI-1 --mode 1366x768 --left-of eDP-1 --brightness 1.1
+#bindsym Mod1+Shift+L exec xrandr --output HDMI-1 --off
 
 # start alacritty terminal
 bindsym $mod+Return exec alacritty
@@ -192,11 +197,9 @@ mode "resize" {
 }
 
 # custom shortcuts to frequently used programs
-bindsym Mod1+Shift+E exec nemo
 bindsym Mod1+Shift+B exec firefox
 bindsym Mod1+Shift+D exec evince
-bindsym Mod1+Shift+S exec spotify
-bindsym Mod1+Shift+M exec rhythmbox
+bindsym Mod1+Shift+C exec code
 
 # Pulse Audio controls
 bindsym XF86AudioRaiseVolume exec pactl set-sink-volume  @DEFAULT_SINK@ +5% 
@@ -212,7 +215,7 @@ bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
 bar {
         status_command i3status
 	position bottom
-	tray_output eDP-1 
+	#tray_output eDP-1 
 	# pango: Hack, Font Awesome 5 Free Regular 10
 	separator_symbol "  "
 	colors {
