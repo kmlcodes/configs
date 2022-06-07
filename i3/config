@@ -43,9 +43,6 @@ set $ws10 "10"
 # Autostart commands
 #====================
 
-# pawns cli
-#exec pawns-cli -email kamalchettri1996@gmail.com -password 4wkejZNBdf8txw7 -accept-tos &
-
 # monitor setting 
 #exec_always xrandr --output eDP-1 --auto --primary --output HDMI-1 --mode 1366x768 --left-of eDP-1 --brightness 1.1
 
