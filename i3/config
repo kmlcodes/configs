@@ -63,6 +63,12 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 # Keybindings
 #====================
 
+# Web browser
+bindsym Mod1+Shift+B exec firefox
+
+# Open Books directory
+bindsym Mod1+Shift+B exec firefox /mnt/backup/books/
+
 # power off and reboot
 bindsym Control+Mod1+Delete exec --no-startup-id systemctl reboot, mode "default"
 bindsym $mod+End exec --no-startup-id systemctl poweroff -i, mode "default"  
@@ -75,7 +81,7 @@ bindsym XF86MonBrightnessDown exec light -U 5
 #bindsym Mod1+Shift+K exec xrandr --output eDP-1 --auto --primary --output HDMI-1 --mode 1366x768 --left-of eDP-1 --brightness 1.1
 #bindsym Mod1+Shift+L exec xrandr --output HDMI-1 --off
 
-# start alacritty terminal
+# start terminal
 bindsym $mod+Return exec alacritty
 
 # kill focused window
@@ -192,11 +198,6 @@ mode "resize" {
         bindsym Escape mode "default"
         bindsym $mod+r mode "default"
 }
-
-# custom shortcuts to frequently used programs
-bindsym Mod1+Shift+B exec firefox
-bindsym Mod1+Shift+D exec evince
-bindsym Mod1+Shift+C exec code
 
 # Pulse Audio controls
 bindsym XF86AudioRaiseVolume exec pactl set-sink-volume  @DEFAULT_SINK@ +5% 
