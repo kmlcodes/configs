@@ -1,3 +1,9 @@
+#==============================================
+# Fish Shell config
+#==============================================
+#  Written by Kamal C. Upreti
+#  (github.com/kml96)
+#==============================================
 # custom aliases
 abbr -a cr 'cargo run'
 abbr -a nv 'nvim'

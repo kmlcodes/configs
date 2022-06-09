@@ -2,7 +2,7 @@
 " Neovim editor configuration
 "=============================================
 " Written by Kamal C. Upreti
-"  (github.com/m3kamal)
+"  (github.com/kml96)
 " This configuration has been adapted 
 " mostly from here: https://github.com/jonhoo/configs
 "==============================================
