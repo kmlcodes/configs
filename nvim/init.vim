@@ -2,7 +2,7 @@
 " Neovim editor configuration
 "=============================================
 " Written by Kamal C. Upreti
-"  (github.com/kml96)
+"  (github.com/kmlcodes)
 " This configuration has been adapted 
 " mostly from here: https://github.com/jonhoo/configs
 "==============================================
@@ -371,15 +371,6 @@ set listchars=nbsp:¬,extends:»,precedes:«,trail:•
 " ; as :
 nnoremap ; :
 
-" Ctrl+h to stop searching
-vnoremap <C-h> :nohlsearch<cr>
-nnoremap <C-h> :nohlsearch<cr>
-
-" Suspend with Ctrl+f
-inoremap <C-f> :sus<cr>
-vnoremap <C-f> :sus<cr>
-nnoremap <C-f> :sus<cr>
-
 " Jump to start and end of line using the home row keys
 map H ^
 map L $
@@ -439,3 +430,10 @@ noremap <c-w> :bw<CR>
 " neovim tree
 nnoremap <C-n> :NvimTreeToggle<CR>
 nnoremap <leader>r :NvimTreeRefresh<CR>
+
+" Move around windows
+nnoremap <C-H> <C-W>h
+nnoremap <C-J> <C-W>j
+nnoremap <C-K> <C-W>k
+nnoremap <C-L> <C-W>l
+
