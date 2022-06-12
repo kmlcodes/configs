@@ -1,8 +1,9 @@
 # =============================================
+#
 # i3 windows manager config
 #==============================================
 #  Written by Kamal C. Upreti
-#  (github.com/kml96)
+#  (github.com/m3kamal)
 #==============================================
 
 #==================
@@ -61,12 +62,6 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 #====================
 # Keybindings
 #====================
-
-# Web browser
-bindsym Mod1+Shift+B exec firefox
-
-# VLC media player
-bindsym Mod1+Shift+V exec vlc
 
 # power off and reboot
 bindsym Control+Mod1+Delete exec --no-startup-id systemctl reboot, mode "default"
