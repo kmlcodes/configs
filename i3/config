@@ -78,6 +78,12 @@ bindsym XF86MonBrightnessDown exec light -U 5
 # start terminal
 bindsym $mod+Return exec alacritty
 
+# start web browser
+bindsym Mod1+Shift+B exec firefox
+
+# start file explorer
+bindsym Mod1+Shift+E exec nemo
+
 # kill focused window
 bindsym Mod1+F4 kill
 
