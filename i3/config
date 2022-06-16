@@ -42,15 +42,16 @@ set $ws10 "10"
 ##====================
 # Autostart commands
 #====================
+# redshift 
+exec --no-startup-id redshift-gtk
+# geoclue2
+exec --no-startup-id /usr/lib/geoclue-2.0/demos/agent
 
 # monitor setting 
 #exec_always xrandr --output eDP-1 --auto --primary --output HDMI-1 --mode 1366x768 --left-of eDP-1 --brightness 1.1
 
 # set random wallpapers
 exec_always feh --bg-max --randomize ~/.local/share/wallpapers/*
-
-# night light
-#exec --no-startup-id redshift-gtk
 
 # Start XDG autostart .desktop files using dex.
 exec --no-startup-id dex --autostart --environment i3
@@ -81,8 +82,8 @@ bindsym $mod+Return exec alacritty
 # start web browser
 bindsym Mod1+Shift+B exec firefox
 
-# start file explorer
-bindsym Mod1+Shift+E exec nemo
+# start PDF document reader
+bindsym Mod1+Shift+D exec zathura
 
 # kill focused window
 bindsym Mod1+F4 kill
