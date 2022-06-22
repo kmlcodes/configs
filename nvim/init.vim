@@ -3,15 +3,13 @@
 "=============================================
 " Written by Kamal C. Upreti
 "  (github.com/kmlcodes)
-" This configuration has been adapted 
-" mostly from here: https://github.com/jonhoo/configs
 "==============================================
-
 
 " use bash shell
 set shell=/bin/bash
 " set map leader to space key 
 let mapleader = "\<Space>"
+
 "=========================
 " Define Plugins
 "=========================
@@ -26,15 +24,9 @@ Plug 'gelguy/wilder.nvim' " wild menu
 Plug 'tmsvg/pear-tree' " auto brackets pairing
 Plug 'kyazdani42/nvim-tree.lua' " file explorer
 
-" Fuzzy finder
-Plug 'airblade/vim-rooter'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
-
 " syntatic language support
 Plug 'rust-lang/rust.vim'
 Plug 'cespare/vim-toml'
-Plug 'stephpy/vim-yaml'
 Plug 'dag/vim-fish'
 
 " Semantic language support
@@ -45,16 +37,15 @@ Plug 'hrsh7th/cmp-buffer', {'branch': 'main'}
 Plug 'hrsh7th/cmp-path', {'branch': 'main'}
 Plug 'hrsh7th/nvim-cmp', {'branch': 'main'}
 Plug 'ray-x/lsp_signature.nvim'
-
-"Only because nvim-cmp _requires_ snippets
 Plug 'hrsh7th/cmp-vsnip', {'branch': 'main'}
 Plug 'hrsh7th/vim-vsnip'
 
 call plug#end()
 
 "==============================
-" Plugins Config
+" Plugin specific config
 "==============================
+
 " air-line
 let g:airline_powerline_fonts = 1
 
@@ -71,43 +62,11 @@ let g:airline_symbols.branch = ''
 let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = ''
 
-if has('nvim')
-    set guicursor=n-v-c:block-Cursor/lCursor-blinkon0,i-ci:ver25-Cursor/lCursor,r-cr:hor20-Cursor/lCursor
-    set inccommand=nosplit
-    noremap <C-q> :confirm qall<CR>
-end
-
-" deal with colors
-if !has('gui_running')
-  set t_Co=256
-endif
-set termguicolors
-set background=dark
-colorscheme darcula
-syntax on
-hi Normal ctermbg=NONE
-
-if executable('rg')
-	set grepprg=rg\ --no-heading\ --vimgrep
-	set grepformat=%f:%l:%c:%m
-endif
-
-" rust
+" rust plugin
 let g:rustfmt_autosave = 1
 let g:rustfmt_emit_files = 1
 let g:rustfmt_fail_silently = 0
 let g:rust_clip_command = 'xclip -selection clipboard'
-
-" Completion
-" Better completion
-" menuone: popup even when there's only one match
-" noinsert: Do not insert text until a selection is made
-" noselect: Do not select, force user to select one from the menu
-set completeopt=menuone,noinsert,noselect
-" Better display for messages
-set cmdheight=2
-" You will have bad experience for diagnostic messages when it's default 4000.
-set updatetime=300
 
 " wilder setup
 call wilder#setup({
@@ -140,14 +99,6 @@ let g:nvim_tree_show_icons = {
     \ 'files': 0,
     \ 'folder_arrows': 0,
     \ }
-"If 0, do not show the icons for one of 'git' 'folder' and 'files'
-"1 by default, notice that if 'files' is 1, it will only display
-"if nvim-web-devicons is installed and on your runtimepath.
-"if folder is 1, you can also tell folder_arrows 1 to show small arrows next to the folder icons.
-"but this will not work when you set indent_markers (because of UI conflict)
-
-" default will show icon by default if no icon is provided
-" default shows no icon by default
 let g:nvim_tree_icons = {
     \ 'default': "",
     \ 'symlink': "",
@@ -281,7 +232,7 @@ autocmd CursorHold,CursorHoldI *.rs :lua require'lsp_extensions'.inlay_hints{ on
 
 filetype plugin indent on
 set autoindent
-set timeoutlen=300 " http://stackoverflow.com/questions/2158516/delay-before-o-opens-a-new-line
+set timeoutlen=300 
 set encoding=utf-8
 set scrolloff=2
 set noshowmode
@@ -291,10 +242,12 @@ set nojoinspaces
 set printfont=:h10
 set printencoding=utf-8
 set printoptions=paper:letter
-" Always draw sign column. Prevent buffer moving when adding/deleting sign.
 set signcolumn=yes
+set completeopt=menuone,noinsert,noselect
+set cmdheight=2
+set updatetime=300
 
-" Sane splits
+" splits
 set splitright
 set splitbelow
 
@@ -303,9 +256,9 @@ set undodir=~/.vimdid
 set undofile
 
 " Decent wildmenu
-set wildmenu
-set wildmode=list:longest
-set wildignore=.hg,.svn,*~,*.png,*.jpg,*.gif,*.settings,Thumbs.db,*.min.js,*.swp,publish/*,intermediate/*,*.o,*.hi,Zend,vendor
+" set wildmenu
+" set wildmode=list:longest
+" set wildignore=.hg,.svn,*~,*.png,*.jpg,*.gif,*.settings,Thumbs.db,*.min.js,*.swp,publish/*,intermediate/*,*.o,*.hi,Zend,vendor
 
 " Use wide tabs
 set shiftwidth=8
@@ -326,50 +279,54 @@ set ignorecase
 set smartcase
 set gdefault
 
-" Search results centered please
-nnoremap <silent> n nzz
-nnoremap <silent> N Nzz
-nnoremap <silent> * *zz
-nnoremap <silent> # #zz
-nnoremap <silent> g* g*zz
-
-" Very magic by default
-nnoremap ? ?\v
-nnoremap / /\v
-cnoremap %s/ %sm/
-
 " =============================================================================
 " GUI settings
 " =============================================================================
+
 set guioptions-=T " Remove toolbar
 set vb t_vb= " No more beeps
 set backspace=2 " Backspace over newlines
 set nofoldenable
 set ttyfast
-" https://github.com/vim/vim/issues/1735#issuecomment-383353563
 set lazyredraw
 set synmaxcol=500
 set laststatus=2
 set relativenumber " Relative line numbers
 set number " Also show current absolute line
 set diffopt+=iwhite " No whitespace in vimdiff
-" Make diffing better: https://vimways.org/2018/the-power-of-diff/
 set diffopt+=algorithm:patience
 set diffopt+=indent-heuristic
 set colorcolumn=80 " and give me a colored column
 set showcmd " Show (partial) command in status line.
 set mouse=a " Enable mouse usage (all modes) in terminals
 set shortmess+=c " don't give |ins-completion-menu| messages.
-
-" Show those damn hidden characters
-" Verbose: set listchars=nbsp:¬,eol:¶,extends:»,precedes:«,trail:•
-set listchars=nbsp:¬,extends:»,precedes:«,trail:•
+set termguicolors
+set background=dark " set dark theme
+colorscheme darcula " current default colorscheme
+syntax on " syntax highlighting on
+hi Normal ctermbg=NONE
+set listchars=nbsp:¬,extends:»,precedes:«,trail:• "show hidden chars
+set guicursor=n-v-c:block-Cursor/lCursor-blinkon0,i-ci:ver25-Cursor/lCursor,r-cr:hor20-Cursor/lCursor
+set inccommand=nosplit
+set grepprg=rg\ --no-heading\ --vimgrep " use rg for search
+set grepformat=%f:%l:%c:%m
 
 " =============================================================================
 "  Keyboard shortcuts
 " =============================================================================
-" ; as :
-nnoremap ; :
+
+" Search results centered 
+nnoremap <silent> n nzz
+nnoremap <silent> N Nzz
+nnoremap <silent> * *zz
+nnoremap <silent> # #zz
+nnoremap <silent> g* g*zz
+
+" Search
+nnoremap ? ?\v
+nnoremap / /\v
+cnoremap %s/ %sm/
+
 
 " Jump to start and end of line using the home row keys
 map H ^
@@ -381,28 +338,11 @@ noremap <leader>c :w !xsel -ib<cr><cr>
 
 " <leader>s for Rg search
 noremap <leader>s :Rg
-let g:fzf_layout = { 'down': '~20%' }
-command! -bang -nargs=* Rg
-  \ call fzf#vim#grep(
-  \   'rg --column --line-number --no-heading --color=always '.shellescape(<q-args>), 1,
-  \   <bang>0 ? fzf#vim#with_preview('up:60%')
-  \           : fzf#vim#with_preview('right:50%:hidden', '?'),
-  \   <bang>0)
-
-function! s:list_cmd()
-  let base = fnamemodify(expand('%'), ':h:.:S')
-  return base == '.' ? 'fd --type file --follow' : printf('fd --type file --follow | proximity-sort %s', shellescape(expand('%')))
-endfunction
-
-command! -bang -nargs=? -complete=dir Files
-  \ call fzf#vim#files(<q-args>, {'source': s:list_cmd(),
-  \                               'options': '--tiebreak=index'}, <bang>0)
-
 
 " Open new file adjacent to current file
 nnoremap <leader>o :e <C-R>=expand("%:p:h") . "/" <CR>
 
-" No arrow keys --- force yourself to use the home row
+" No arrow keys 
 nnoremap <up> <nop>
 nnoremap <down> <nop>
 inoremap <up> <nop>
@@ -426,6 +366,9 @@ noremap <c-s> :w<CR>
 
 " Ctrl+w closes file
 noremap <c-w> :bw<CR>
+
+" exit nvim program
+noremap <C-q> :confirm qall<CR>
 
 " neovim tree
 nnoremap <C-n> :NvimTreeToggle<CR>
