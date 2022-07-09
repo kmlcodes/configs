@@ -28,26 +28,18 @@ window {
 	border:							1px;
 	border-color:					@bo;
     border-radius:                  8px;
-	width:							300px;
-    location:                       southeast;
-    x-offset:                       -10;
+	width:							500px;
+    location:                       southwest;
+    x-offset:                       10;
     y-offset:                       -52;
 }
 
 prompt {
     enabled: 						true;
-	padding: 						0px 0px 0px 10px;
+	padding: 						0px;
 	background-color: 				@al;
 	text-color: 					@fg;
-}
-
-textbox-prompt-colon {
-	padding: 						1px 0px 0px 0px;
-	background-color: 				@al;
-	text-color: 					@fg;
-	expand: false;
-	str: "";
-	font:							"feather 10";
+	font:							"feather 12";
 }
 
 entry {
@@ -56,28 +48,28 @@ entry {
     placeholder-color:              @fg;
     expand:                         true;
     horizontal-align:               0;
-    placeholder:                    "Search";
+    placeholder:                    "Type to search...";
     padding:                        0px 0px 0px 5px;
     blink:                          true;
 }
 
 inputbar {
-	children: 						[ textbox-prompt-colon, prompt ];
+	children: 						[ prompt, entry ];
     background-color:               @bg;
     text-color:                     @fg;
     expand:                         false;
 	border:							0px 0px 1px 0px;
     border-radius:                  8px;
 	border-color:					@bo;
-    margin:                         0px;
+    margin:                         0px 240px 0px 0px;
     padding:                        10px;
 }
 
 listview {
     background-color:               @al;
     padding:                        0px;
-    columns:                        1;
-    lines:                          5;
+    columns:                        2;
+    lines:                          10;
     spacing:                        5px;
     cycle:                          true;
     dynamic:                        true;
@@ -99,7 +91,7 @@ element {
     text-color:                     @fg;
     orientation:                    horizontal;
     border-radius:                  0px;
-    padding:                        8px 8px 8px -21px;
+    padding:                        9px;
 }
 
 element-icon {
