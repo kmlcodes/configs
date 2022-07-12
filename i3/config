@@ -1,21 +1,13 @@
 # =============================================
-#
 # i3 windows manager config
 #==============================================
 #  Written by Kamal C. Upreti
-#  (github.com/m3kamal)
+#  (github.com/kmlcodes)
 #==============================================
 
 #==================
 # General configs 
 #==================
-
-# Hide title bar
-default_border pixel 1
-default_floating_border pixel 1
-
-# font for window titles. ISO 10646 = Unicode
-font pango:  Fira Code  10
 
 # colors
 # from: https://gist.github.com/paulbdavis/4956329
@@ -24,6 +16,13 @@ client.focused #dcdccc #dcdccc #3c3b37 #ffcfaf
 client.focused_inactive #3c3b37 #3c3b37 #7f9f7f #3c3b37
 client.unfocused #3c3b37 #3c3b37 #dcdccc #3c3b37
 client.urgent #dca3a3 #dca3a3 #dcdccc #3c3b37
+
+# hide title bar
+default_border pixel 1
+default_floating_border pixel 1
+
+# font for window titles. ISO 10646 = Unicode
+font pango:  Fira Code  10
 
 # set mod key to Super(Win)
 set $mod Mod4
@@ -50,9 +49,6 @@ set $ws10 "10"
 # polybar
 exec_always --no-startup-id ~/.config/polybar/launch.sh
 
-# monitor setting 
-#exec_always xrandr --output eDP-1 --auto --primary --output HDMI-1 --mode 1366x768 --left-of eDP-1 --brightness 1.1
-
 # set random wallpapers
 exec_always feh --bg-max --randomize ~/.local/share/wallpapers/*
 
@@ -67,9 +63,14 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 # Keybindings
 #====================
 
-# power off and reboot
-bindsym Control+Mod1+Delete exec --no-startup-id systemctl reboot, mode "default"
-bindsym $mod+End exec --no-startup-id systemctl poweroff -i, mode "default"  
+# take screenshot
+bindsym Print exec --no-startup-id import -window root ~/$(date '+%Y%m%d-%H%M%S').png
+
+# power menu
+bindsym Control+Mod1+Delete exec --no-startup-id ~/.config/rofi/power-menu.sh
+
+# apps launcher menu
+bindsym $mod+m exec --no-startup-id ~/.config/rofi/apps-launcher.sh
 
 # brightness control
 bindsym XF86MonBrightnessUp exec light -A 10
@@ -93,9 +94,6 @@ bindsym Mod1+Shift+D exec zathura
 
 # kill focused window
 bindsym Mod1+F4 kill
-
-# main menu
-bindsym $mod+m exec --no-startup-id ~/.config/polybar/main-menu.sh
 
 # change focus
 bindsym $mod+h focus left
