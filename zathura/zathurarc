@@ -1,13 +1,8 @@
 # keybindings
 map r reload
-map p print
 map i recolor
-map J zoom out
-map K zoom in
-map R rotate
-unmap f
-map f toggle_fullscreen
-map [fullscreen] f toggle_fullscreen
+map <C-j> zoom in
+map <C-k> zoom out
 
 # Open document in fit-width mode by default
 set adjust-open "best-fit"
@@ -32,4 +27,5 @@ set font "FiraCode 11"
 #colors
 set default-bg                  "#212121"
 set default-fg                  "#FFFFFF"
-
+set inputbar-bg                 "#3D3D3D" # base01
+set inputbar-fg                 "#FFFFFF" # base2
