@@ -1,8 +1,10 @@
 # Font settings
 font:
   normal:
-    family: Fira Code
+    family: Source Code Pro
     style: Regular
+  
+  size: 12
 
 # Colors (Gruvbox dark)
 colors:
