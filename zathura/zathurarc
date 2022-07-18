@@ -5,7 +5,7 @@ map <C-j> zoom in
 map <C-k> zoom out
 
 # Open document in fit-width mode by default
-set adjust-open "best-fit"
+set adjust-open "fit-width"
 
 # One page per row by default
 set pages-per-row 1
