@@ -43,6 +43,9 @@ set $ws10 "10"
 # Autostart commands
 #====================
 
+# redshift 
+exec --no-startup-id redshift-gtk
+
 # set random wallpapers
 exec_always feh --bg-max --randomize ~/.local/share/wallpapers/*
 
@@ -52,6 +55,9 @@ exec --no-startup-id dex --autostart --environment i3
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+
+# polkit using gnome-polkit
+exec_always --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 
 #====================
 # Keybindings
@@ -76,13 +82,13 @@ bindsym Mod1+Shift+L exec xrandr --output HDMI-1 --off
 bindsym $mod+Return exec alacritty
 
 # file explorer
-bindsym Mod1+Shift+E exec nemo
+bindsym Mod1+Shift+E exec nautilus
 
 # web browser
 bindsym Mod1+Shift+B exec firefox
 
 # PDF document reader
-bindsym Mod1+Shift+D exec zathura
+bindsym Mod1+Shift+D exec evince
 
 # kill focused window
 bindsym Mod1+F4 kill
