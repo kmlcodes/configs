@@ -81,6 +81,14 @@ function M.setup()
     end,
     tag = 'nightly' -- optional, updated every week. (see issue #1193)
   }
+-- Status line
+    use {
+      "nvim-lualine/lualine.nvim",
+      config = function()
+        require('lualine').setup()
+      end,
+      wants = "nvim-web-devicons",
+    }
 
   -- Bootstrap Neovim
   if packer_bootstrap then
