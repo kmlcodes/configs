@@ -61,17 +61,25 @@ function M.setup()
       require("nvim-web-devicons").setup { default = true }
     end,
   }
+  -- Color schemes
+  use {
+    "sainnhe/everforest",
+    config = function()
+      vim.g.everforest_better_performance = 1
+      vim.cmd "colorscheme everforest"
+    end
+  }
 
    -- Nvim tree (file explorer)
-   use {
-    "kyazdani42/nvim-tree.lua",
-    opt = true,
-    wants = "nvim-web-devicons",
-    cmd = { "NvimTreeToggle", "NvimTreeClose" },
-    -- module = "nvim-tree",
+  use {
+    'kyazdani42/nvim-tree.lua',
+    requires = {
+      'kyazdani42/nvim-web-devicons', -- optional, for file icons
+    },
     config = function()
       require("config.nvimtree").setup()
     end,
+    tag = 'nightly' -- optional, updated every week. (see issue #1193)
   }
 
   -- Bootstrap Neovim
