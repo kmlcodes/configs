@@ -81,15 +81,34 @@ function M.setup()
     end,
     tag = 'nightly' -- optional, updated every week. (see issue #1193)
   }
--- Status line
+  
+-- Lualine Status bar
     use {
-      "nvim-lualine/lualine.nvim",
-      config = function()
-        require('lualine').setup()
-      end,
-      wants = "nvim-web-devicons",
-    }
+  "nvim-lualine/lualine.nvim",
+  event = "VimEnter",
+  config = function()
+   require("config.lualine").setup()
+  end,
+  requires = { "nvim-web-devicons" },
+}
 
+-- For status line appearance
+use {
+  "SmiteshP/nvim-gps",
+  requires = "nvim-treesitter/nvim-treesitter",
+  module = "nvim-gps",
+  config = function()
+    require("nvim-gps").setup()
+  end,
+}
+
+-- Nvim-gps needs it
+use {
+  "nvim-treesitter/nvim-treesitter",
+   config = function()
+     require("config.treesitter").setup()
+   end,
+}
   -- Bootstrap Neovim
   if packer_bootstrap then
     print "Neovim restart is required after installation!"
