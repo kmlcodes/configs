@@ -1,6 +1,11 @@
 /* apps launcher menu */
 
-@import "colors.rasi"
+/* colors */
+* {
+  bg:   #212121;
+  fg:   #FFFFFF;
+  se:	#3D3D3D;
+}
 
 configuration {
 	font: "Fira Code 10";
