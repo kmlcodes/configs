@@ -59,8 +59,6 @@ keymap( "n" , "L", "$", default_opts)
 
  -- Nvim-tree 
  keymap( "n" , "<leader>e", ":NvimTreeToggle<CR>", default_opts)
-
-
  keymap( "n" , "<leader>r", ":NvimTreeRefresh<CR>", default_opts)
 
 -- Save buffer  
