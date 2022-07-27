@@ -69,6 +69,9 @@ exec_always --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-ag
 # Keybindings
 #====================
 
+# take screenshot
+bindsym Print exec --no-startup-id scrot -d 2  
+
 # apps launcher menu
 bindsym $mod+m exec --no-startup-id ~/.config/rofi/apps-launcher.sh
 
