@@ -1,7 +1,7 @@
 # configs
 > This repo contains dotfiles and configs that I use in arch linux.
 
-## Desktop (with polybar and rofi menu)
+## Desktop
 ![Alt text](img/desktop.png "Desktop")
 
 ## Neovim
