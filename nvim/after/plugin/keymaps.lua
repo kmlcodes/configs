@@ -34,8 +34,8 @@ keymap("x", "K", ":move '<-2<CR>gv-gv", default_opts)
 keymap("x", "J", ":move '>+1<CR>gv-gv", default_opts)
 
 -- Insert blank line
-keymap("n", "]<Space>", "o<Esc>", default_opts)
-keymap("n", "[<Space>", "O<Esc>", default_opts)
+keymap("n", "<leader>[", "O<Esc>", default_opts)
+keymap("n", "<leader>]", "o<Esc>", default_opts)
 
 -- No arrow keys
 keymap({'n', 'i'}, "<Left>", "<nop>", default_opts)
@@ -57,14 +57,11 @@ keymap({'n', 'i'}, "<leader>o", ':e <C-R>=expand("%:p:h") . "/" <CR>', default_o
 keymap( "n" , "H", "^", default_opts)
 keymap( "n" , "L", "$", default_opts)
 
- -- Make search better
- keymap( "n" , "?", "?\v", default_opts)
- keymap( "n" , "/", "/\v", default_opts)
-
- -- Nvim-tree toggle
+ -- Nvim-tree 
  keymap( "n" , "<leader>e", ":NvimTreeToggle<CR>", default_opts)
 
 
+ keymap( "n" , "<leader>r", ":NvimTreeRefresh<CR>", default_opts)
 
-
-
+-- Save buffer  
+keymap({'n', 'i'}, "<leader>s",":w<CR>", default_opts)
