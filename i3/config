@@ -43,14 +43,17 @@ set $ws10 "10"
 # Autostart commands
 #====================
 
+# picom
+exec_always --no-startup-id picom --experimental-backends -b
+
 # polybar
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 # redshift 
-exec --no-startup-id redshift-gtk
+#exec --no-startup-id redshift-gtk
 
 # set random wallpapers
-exec_always feh --bg-max --randomize ~/.local/share/wallpapers/*
+exec_always feh --bg-scale --randomize ~/.local/share/wallpapers/*
 
 # Start XDG autostart .desktop files using dex.
 exec --no-startup-id dex --autostart --environment i3
