@@ -61,15 +61,15 @@ function M.setup()
       require("nvim-web-devicons").setup { default = true }
     end,
   }
-  -- Color schemes
-  use {
-    "sainnhe/everforest",
-    config = function()
-      vim.g.everforest_better_performance = 1
-      vim.cmd "colorscheme everforest"
-    end
-  }
 
+  -- Color scheme
+  use {
+      "sainnhe/gruvbox-material",
+      config = function()
+        vim.cmd "colorscheme gruvbox-material"
+      end
+    }
+    
    -- Nvim tree (file explorer)
   use {
     'kyazdani42/nvim-tree.lua',
@@ -102,13 +102,53 @@ use {
   end,
 }
 
--- Nvim-gps needs it
+-- Treesitter 
 use {
   "nvim-treesitter/nvim-treesitter",
    config = function()
      require("config.treesitter").setup()
    end,
 }
+
+-- LSP 
+use {
+  "neovim/nvim-lspconfig",
+   config = function()
+     require("config.lsp").setup()
+   end,
+}
+-- Completion 
+use {
+  "hrsh7th/nvim-cmp",
+  event = "InsertEnter",
+  opt = true,
+  config = function()
+        require("config.cmp").setup()
+  end,
+  wants = { "LuaSnip" },
+  requires = {
+    "hrsh7th/cmp-buffer",
+    "hrsh7th/cmp-path",
+    "hrsh7th/cmp-nvim-lua",
+    "ray-x/cmp-treesitter",
+    "hrsh7th/cmp-cmdline",
+    "hrsh7th/cmp-nvim-lsp",
+    "hrsh7th/cmp-nvim-lsp-signature-help",
+
+    -- Snippets
+    "saadparwaiz1/cmp_luasnip",
+    { 
+    "L3MON4D3/LuaSnip",
+    wants = { "friendly-snippets", "vim-snippets" },
+    config = function()
+      require("config.snip").setup()
+          end,
+    },
+    "rafamadriz/friendly-snippets",
+    "honza/vim-snippets",
+  }
+}
+
   -- Bootstrap Neovim
   if packer_bootstrap then
     print "Neovim restart is required after installation!"
