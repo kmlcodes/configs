@@ -116,6 +116,9 @@ use {
    config = function()
      require("config.lsp").setup()
    end,
+   requires = {
+        "williamboman/nvim-lsp-installer",
+      }
 }
 -- Completion 
 use {
