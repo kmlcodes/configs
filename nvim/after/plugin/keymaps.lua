@@ -63,3 +63,6 @@ keymap( "n" , "L", "$", default_opts)
 
 -- Save buffer  
 keymap({'n', 'i'}, "<leader>s",":w<CR>", default_opts)
+
+-- quit 
+keymap({'n', 'i'}, "<leader>q",":q<CR>", default_opts)
