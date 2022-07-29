@@ -44,25 +44,27 @@ keymap({'n', 'i'}, "<Up>", "<nop>", default_opts)
 keymap({'n', 'i'}, "<Down>", "<nop>", default_opts)
  
 --Switch buffers
-keymap({'n', 'i'}, "<Left>", ":bp<CR>", default_opts)
-keymap({'n', 'i'}, "<Right>", ":bn<CR>", default_opts)
+keymap("n" , "<left>", ":bp<cr>", default_opts)
+keymap("n" , "<Right>", ":bn<CR>", default_opts)
 
 -- Toggle buffers
-keymap({'n', 'i'}, "<leader><leader>", "<c-^>", default_opts)
+keymap("n" , "<leader><leader>", "<c-^>", default_opts)
  
+-- Close current buffer
+keymap("n" , "<leader>w", ":bd<cr>", default_opts)
+
 -- Open new file adjacent to current file
-keymap({'n', 'i'}, "<leader>o", ':e <C-R>=expand("%:p:h") . "/" <CR>', default_opts)
+keymap("n" , "<leader>o", ':e <C-R>=expand("%:p:h") . "/" <CR>', default_opts)
 
 -- Jump to start and end of line
-keymap( "n" , "H", "^", default_opts)
-keymap( "n" , "L", "$", default_opts)
+keymap("n" , "H", "^", default_opts)
+keymap("n" , "L", "$", default_opts)
 
  -- Nvim-tree 
- keymap( "n" , "<leader>e", ":NvimTreeToggle<CR>", default_opts)
- keymap( "n" , "<leader>r", ":NvimTreeRefresh<CR>", default_opts)
+ keymap("n" , "<leader>e", ":NvimTreeRefresh<CR>:NvimTreeToggle<CR>", default_opts)
 
 -- Save buffer  
-keymap({'n', 'i'}, "<leader>s",":w<CR>", default_opts)
+keymap("n" , "<leader>s",":w<CR>", default_opts)
 
 -- quit 
-keymap({'n', 'i'}, "<leader>q",":q<CR>", default_opts)
+keymap("n" , "<leader>q",":q<CR>", default_opts)
