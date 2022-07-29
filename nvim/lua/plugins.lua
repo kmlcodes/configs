@@ -53,6 +53,22 @@ function M.setup()
     -- Performance
     use { "lewis6991/impatient.nvim" }
 
+    -- Auto pairs
+  use {
+	"windwp/nvim-autopairs",
+    config = function() require("nvim-autopairs").setup {}
+     end
+  }
+
+-- Better Comment
+    use {
+      "numToStr/Comment.nvim",
+      keys = { "gc", "gcc", "gbc" },
+      config = function()
+        require("config.comment").setup()
+      end,
+    }
+
     -- Icons
     use {
     "kyazdani42/nvim-web-devicons",
@@ -152,8 +168,14 @@ use {
   }
 }
 
-  -- Bootstrap Neovim
-  if packer_bootstrap then
+  -- Rust
+  use {
+    "rust-lang/rust.vim",
+    ft = { "rust" },
+    opt = true,
+  }
+
+    if packer_bootstrap then
     print "Neovim restart is required after installation!"
     require("packer").sync()
   end
